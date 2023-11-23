@@ -1,0 +1,26 @@
+{
+  "name": "papelito-api",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "engines": {
+    "node": "^20.10.0",
+    "pnpm": "^8.10.5"
+  },
+  "scripts": {
+    "dev": "node --no-warnings --env-file=.env --import tsx --watch src/server.ts"
+  },
+  "author": "Levi Eber",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.9.5",
+    "prisma": "^5.6.0",
+    "tsx": "^4.4.0",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.6.0",
+    "env-var": "^7.4.1",
+    "fastify": "^4.24.3",
+    "zod": "^3.22.4"
+  }
+}
