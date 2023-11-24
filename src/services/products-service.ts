@@ -39,4 +39,23 @@ export class ProductsService {
       throw error;
     }
   }
+
+  async delete(id: string): Promise<boolean> {
+    try {
+      await databaseClient.product.delete({
+        where: {
+          id,
+        },
+      });
+      return true;
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2025"
+      ) {
+        return false;
+      }
+      throw error;
+    }
+  }
 }

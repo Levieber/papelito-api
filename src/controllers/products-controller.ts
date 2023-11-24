@@ -28,4 +28,14 @@ export class ProductsController extends ControllerBase {
 
     return this.noContent();
   }
+
+  async delete(id: string) {
+    const productFound = await this.productsService.delete(id);
+
+    if (!productFound) {
+      return this.notFound();
+    }
+
+    return this.noContent();
+  }
 }
