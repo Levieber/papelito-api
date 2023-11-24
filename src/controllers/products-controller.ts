@@ -1,5 +1,5 @@
 import { ProductsService } from "@/services/products-service";
-import { CreateProductDto } from "@/dtos/products-dtos";
+import { CreateProductDto, UpdateProductDto } from "@/dtos/products-dtos";
 import { ControllerBase } from "./controller-base";
 
 export class ProductsController extends ControllerBase {
@@ -17,5 +17,15 @@ export class ProductsController extends ControllerBase {
     const products = await this.productsService.getAll();
 
     return this.ok(products);
+  }
+
+  async update(id: string, body: UpdateProductDto) {
+    const productFound = await this.productsService.update(id, body);
+
+    if (!productFound) {
+      return this.notFound();
+    }
+
+    return this.noContent();
   }
 }
