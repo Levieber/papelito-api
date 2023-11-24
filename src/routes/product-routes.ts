@@ -11,7 +11,7 @@ const productsService = new ProductsService();
 const productsController = new ProductsController(productsService);
 
 export async function productRoutes() {
-  app.post("/products", async (request, reply) => {
+  app.post("/products", { onRequest: [app.authenticate] }, async (request, reply) => {
     const { statusCode, body } = await productsController.create(
       createProductDtoSchema.parse(request.body)
     );
@@ -19,13 +19,13 @@ export async function productRoutes() {
     reply.status(statusCode).send(body);
   });
 
-  app.get("/products", async (_request, reply) => {
+  app.get("/products", { onRequest: [app.authenticate] }, async (_request, reply) => {
     const { statusCode, body } = await productsController.index();
 
     reply.status(statusCode).send(body);
   });
 
-  app.patch("/products/:id", async (request, reply) => {
+  app.patch("/products/:id", { onRequest: [app.authenticate] }, async (request, reply) => {
     const { statusCode, body } = await productsController.update(
       idParamsDtoSchema.parse(request.params).id,
       updateProductDtoSchema.parse(request.body)
@@ -34,7 +34,7 @@ export async function productRoutes() {
     reply.status(statusCode).send(body);
   });
 
-  app.delete("/products/:id", async (request, reply) => {
+  app.delete("/products/:id", { onRequest: [app.authenticate] }, async (request, reply) => {
     const { statusCode, body } = await productsController.delete(
       idParamsDtoSchema.parse(request.params).id
     );

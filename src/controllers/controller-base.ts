@@ -11,6 +11,14 @@ export abstract class ControllerBase {
     return { statusCode: 204, body: undefined };
   }
 
+  badRequest<T>(body: T) {
+    return { statusCode: 400, body };
+  }
+
+  unauthorized<T>(body: T) {
+    return { statusCode: 401, body };
+  }
+
   notFound() {
     return { statusCode: 404, body: { message: "Not Found" } };
   }
