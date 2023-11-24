@@ -5,4 +5,8 @@ export class ProductsService {
   create({ name, description, price }: CreateProductDto) {
     return databaseClient.product.create({ data: { name, description, price }});
   }
+
+  getAll() {
+    return databaseClient.product.findMany()
+  }
 }

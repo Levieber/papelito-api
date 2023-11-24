@@ -12,4 +12,10 @@ export class ProductsController extends ControllerBase {
 
     return this.created(product);
   }
+
+  async index() {
+    const products = await this.productsService.getAll();
+
+    return this.ok(products);
+  }
 }

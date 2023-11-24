@@ -14,4 +14,10 @@ export async function productRoutes() {
 
     reply.status(statusCode).send(body);
   });
+
+  app.get("/products", async (_request, reply) => {
+    const { statusCode, body } = await productsController.index()
+
+    reply.status(statusCode).send(body)
+  })
 }
