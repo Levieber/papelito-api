@@ -11,34 +11,62 @@ const productsService = new ProductsService();
 const productsController = new ProductsController(productsService);
 
 export async function productRoutes() {
-  app.post("/products", { onRequest: [app.authenticate] }, async (request, reply) => {
-    const { statusCode, body } = await productsController.create(
-      createProductDtoSchema.parse(request.body)
-    );
+  app.post(
+    "/products",
+    { onRequest: [app.authenticate] },
+    async (request, reply) => {
+      const { statusCode, body } = await productsController.create(
+        createProductDtoSchema.parse(request.body)
+      );
 
-    reply.status(statusCode).send(body);
-  });
+      reply.status(statusCode).send(body);
+    }
+  );
 
-  app.get("/products", { onRequest: [app.authenticate] }, async (_request, reply) => {
-    const { statusCode, body } = await productsController.index();
+  app.get(
+    "/products",
+    { onRequest: [app.authenticate] },
+    async (_request, reply) => {
+      const { statusCode, body } = await productsController.index();
 
-    reply.status(statusCode).send(body);
-  });
+      reply.status(statusCode).send(body);
+    }
+  );
 
-  app.patch("/products/:id", { onRequest: [app.authenticate] }, async (request, reply) => {
-    const { statusCode, body } = await productsController.update(
-      idParamsDtoSchema.parse(request.params).id,
-      updateProductDtoSchema.parse(request.body)
-    );
+  app.get(
+    "/products/:id",
+    { onRequest: [app.authenticate] },
+    async (request, reply) => {
+      const { statusCode, body } = await productsController.show(
+        idParamsDtoSchema.parse(request.params).id
+      );
 
-    reply.status(statusCode).send(body);
-  });
+      reply.status(statusCode).send(body);
+    }
+  );
 
-  app.delete("/products/:id", { onRequest: [app.authenticate] }, async (request, reply) => {
-    const { statusCode, body } = await productsController.delete(
-      idParamsDtoSchema.parse(request.params).id
-    );
+  app.patch(
+    "/products/:id",
+    { onRequest: [app.authenticate] },
+    async (request, reply) => {
+      const { statusCode, body } = await productsController.update(
+        idParamsDtoSchema.parse(request.params).id,
+        updateProductDtoSchema.parse(request.body)
+      );
 
-    reply.status(statusCode).send(body);
-  });
+      reply.status(statusCode).send(body);
+    }
+  );
+
+  app.delete(
+    "/products/:id",
+    { onRequest: [app.authenticate] },
+    async (request, reply) => {
+      const { statusCode, body } = await productsController.delete(
+        idParamsDtoSchema.parse(request.params).id
+      );
+
+      reply.status(statusCode).send(body);
+    }
+  );
 }

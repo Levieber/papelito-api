@@ -13,6 +13,10 @@ export class ProductsService {
     return databaseClient.product.findMany();
   }
 
+  getById(id: string) {
+    return databaseClient.product.findUnique({ where: { id } });
+  }
+
   async update(
     id: string,
     { name, description, price }: UpdateProductDto

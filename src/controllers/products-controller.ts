@@ -19,6 +19,16 @@ export class ProductsController extends ControllerBase {
     return this.ok(products);
   }
 
+  async show(id: string) {
+    const product = await this.productsService.getById(id)
+
+    if (!product) {
+      return this.notFound()
+    }
+
+    return this.ok(product)
+  }
+
   async update(id: string, body: UpdateProductDto) {
     const productFound = await this.productsService.update(id, body);
 
