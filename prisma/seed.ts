@@ -1,5 +1,6 @@
 import { databaseClient } from "@/config/database-client";
 import * as env from "env-var";
+import bcrypt from "bcrypt"
 
 const email = env.get("ADMIN_ROOT_EMAIL").required().asEmailString();
 const password = env.get("ADMIN_ROOT_PASSWORD").required().asString();
@@ -13,7 +14,7 @@ async function main() {
     create: {
       name: "admin-root",
       email,
-      password,
+      password: bcrypt.hashSync(password, 10),
     },
   });
 }
