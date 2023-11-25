@@ -15,8 +15,6 @@ app.setErrorHandler(errorHandler);
 
 app.register(helmet, { global: true });
 
-console.log(DASHBOARD_ORIGIN)
-
 app.register(cors, {
   origin: process.env.NODE_ENV === "development" ? "*" : DASHBOARD_ORIGIN,
 });
