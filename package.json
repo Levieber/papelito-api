@@ -2,6 +2,7 @@
   "name": "papelito-api",
   "version": "1.0.0",
   "main": "dist/server.js",
+  "packageManager": "pnpm@8.10.5",
   "scripts": {
     "postinstall": "prisma generate",
     "db:seed": "node --env-file=.env --import tsx prisma/seed.ts",
