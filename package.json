@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "engines": {
-    "node": "^20.10.0",
-    "pnpm": "^8.10.5"
+    "node": "20.10.0",
+    "pnpm": "8.10.5"
   },
   "scripts": {
     "db:seed": "node --env-file=.env --import tsx prisma/seed.ts",
