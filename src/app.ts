@@ -16,7 +16,21 @@ app.setErrorHandler(errorHandler);
 app.register(helmet, { global: true });
 
 app.register(cors, {
-  origin: process.env.NODE_ENV === "development" ? "*" : DASHBOARD_ORIGIN,
+  origin: (origin, cb) => {
+    if (process.env.NODE_ENV === "development") {
+      cb(null, true);
+      return;
+    }
+
+    console.log(origin);
+    console.log(DASHBOARD_ORIGIN);
+    if (origin === DASHBOARD_ORIGIN) {
+      cb(null, true);
+      return;
+    }
+
+    cb(new Error("Not allowed"), false);
+  },
 });
 
 app.register(authenticate);
