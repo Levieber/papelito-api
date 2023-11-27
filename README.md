@@ -22,7 +22,7 @@
   - Runtime
 - [Typescript](https://www.typescriptlang.org/)
   - Superset, linguagem baseado no Javascript.
-- [Fastify]([https://router.vuejs.org/](https://fastify.dev/))
+- [Fastify](https://fastify.dev/)
   - Framework web
 - [Prisma](https://www.prisma.io/)
   - ORM
@@ -81,6 +81,6 @@ pnpm dev // Ou pnpm run dev
 yarn dev
 ```
 
-Obs: o servidor iniciará na porta 3333 - acesse por: <http://localhost:3000/>
+Obs: o servidor iniciará na porta 3333 - acesse por: <http://localhost:3333/>
 
 <h3 align="center">Agora, é sua hora de codar 🎮</h3>
