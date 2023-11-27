@@ -8,8 +8,8 @@
   },
   "scripts": {
     "postinstall": "prisma generate",
-    "db:seed": "node --env-file=.env --import tsx prisma/seed.ts",
-    "dev": "node --no-warnings --env-file=.env --import tsx --watch src/server.ts",
+    "db:seed": "tsx --env-file=.env prisma/seed.ts",
+    "dev": "tsx watch --env-file=.env src/server.ts",
     "build": "tsup-node src/server.ts"
   },
   "author": "Levi Eber",
