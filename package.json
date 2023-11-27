@@ -7,10 +7,12 @@
     "node": "20.10.0"
   },
   "scripts": {
-    "postinstall": "prisma generate",
     "db:seed": "tsx --env-file=.env prisma/seed.ts",
+    "predev": "prisma generate && pnpm run db:seed",
     "dev": "tsx watch --env-file=.env src/server.ts",
-    "build": "tsup-node src/server.ts"
+    "prestart": "prisma generate && prisma migrate deploy && pnpm run db:seed",
+    "start": "node dist/server.js",
+    "build": "tsup-node src/server.ts ./piri.ts"
   },
   "author": "Levi Eber",
   "license": "ISC",
