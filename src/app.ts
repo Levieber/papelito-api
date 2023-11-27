@@ -22,9 +22,19 @@ app.register(cors, {
       return;
     }
 
-    console.log(origin);
-    console.log(DASHBOARD_ORIGIN);
-    if (origin === DASHBOARD_ORIGIN) {
+    if (!origin) {
+      cb(new Error("Not allowed"), false);
+      return
+    }
+
+    const normalizedOrigin = origin.endsWith("/")
+      ? origin.slice(0, -1)
+      : origin;
+    const normalizedDashboardOrigin = DASHBOARD_ORIGIN.endsWith("/")
+      ? DASHBOARD_ORIGIN.slice(0, -1)
+      : DASHBOARD_ORIGIN;
+
+    if (normalizedOrigin === normalizedDashboardOrigin) {
       cb(null, true);
       return;
     }
